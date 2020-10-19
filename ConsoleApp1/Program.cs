@@ -1,42 +1,28 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-
-namespace ConsoleApp1
-{
- class Program
-    {
-        delegate void Name(string input);
-        static void Main()
+ static string Alphabet_chechker()
         {
-            Name name = delegate (string input1)
-            {
-                Console.WriteLine("Hi Mr " + input1);
-            };
-            Console.Write("Enter your name :");
-            string x;
             bool check = true;
+            string input;
             do
             {
-                x = Console.ReadLine();
-                foreach (char i in x)
+                input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input))
                 {
-                    
-                     if (i < '0' || i > '9') 
+                    { Console.WriteLine("Empty input!"); check = false; return Alphabet_chechker(); }
+                }
+                foreach (char i in input)
+                {
+                
+                    if (i < '0' || i > '9')
                     {
-                        foreach(char a in "the quick brown fox jumps over the lazy dog THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG")
+                        foreach (char a in "thequickbrownfoxjumpsoverthelazydogTHEQUICKBROWNFOXJUMPSOVERTHELAZYDOG")
                         {
                             if (a == i) { check = true; break; }
-                            else { check = false;}
+                            else { check = false; }
                         }
                     }
-                    else { Console.WriteLine("input again!"); check = false;break; }
-                    if (check == false) { Console.WriteLine("input again!");  break; }
+                    else { Console.WriteLine("input again!"); check = false; break; }
+                    if (check == false) { Console.WriteLine("input again!"); break; }
                 }
             } while (check == false);
-            name(x);
-           
+            return input;
         }
-    }
-
-
-}
